@@ -92,10 +92,6 @@ describe('Visa', function() {
 });
 
 describe('MasterCard', function() {
-  // Chai lets you write more human-readable tests that throw helpful errors.
-  // Expect syntax is one way to do this, but there are others. 
-  // If you want to know more, check out the documentation. 
-  //   http://chaijs.com/api/bdd/
   var should = chai.should();
  
   it('has a prefix of 51 and a length of 16', function() {
@@ -110,16 +106,6 @@ describe('MasterCard', function() {
     detectNetwork('5312345678901234').should.equal('MasterCard');
   });
  
-
-  // You can also use should instead of expect, which changes the style
-  // slightly. It really doesn't matter which one you use - check out 
-  // http://chaijs.com/guide/styles/ for more info, but it's important
-  // to be consistent (unlike in this file, where we use BOTH expect
-  // and should, but that's just for learning), so once you've gotten 
-  // these tests to pass using should syntax, refactor your tests to 
-  // use either expect or should, but not both. 
-  
-  
   it('has a prefix of 54 and a length of 16', function() {
     detectNetwork('5412345678901234').should.equal('MasterCard');
   });
@@ -127,14 +113,36 @@ describe('MasterCard', function() {
   it('has a prefix of 55 and a length of 16', function() {
     detectNetwork('5512345678901234').should.equal('MasterCard');
   })
- 
 });
 
 describe('Discover', function() {
-  // Tests without a function will be marked as "pending" and not run
-  // Implement these tests (and others) and make them pass!
-  it('has a prefix of 6011 and a length of 16');
-  it('has a prefix of 6011 and a length of 19');
+  var should = chai.should();
+
+  it('has a prefix of 6011 and a length of 16', function() {
+    detectNetwork('6011567890123456').should.equal('Discover');
+  });
+
+  it('has a prefix of 6011 and a length of 19', function() {
+    detectNetwork('6011567890123456789').should.equal('Discover');
+  });
+
+  it('has a prefix of 65 and a length of 16', function() {
+    detectNetwork('6534567890123456').should.equal('Discover');
+  });
+
+  it('has a prefix of 65 and a length of 19', function() {
+    detectNetwork('6534567890123456789').should.equal('Discover');
+  });
+  for (var prefix = 644; prefix <= 649; prefix++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 16', function() {
+        detectNetwork(prefix + '1234567890123').should.equal('Discover')
+      });
+      it('has a prefix of ' + prefix + ' and a length of 19', function() {
+        detectNetwork(prefix + '1234567890123456').should.equal('Discover')
+      });
+    })(prefix)
+  }
 });
 
 describe('Maestro', function() {
