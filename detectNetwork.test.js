@@ -146,6 +146,26 @@ describe('Discover', function() {
 });
 
 describe('Maestro', function() {
+  var should = chai.should();
   // Write full test coverage for the Maestro card
+  for (var length = 12; length <= 19; length++) {
+    (function(length) {
+      var additionalDigits = '';
+      for (var i = 0; i < length - 4; i++) {
+        additionalDigits += '0';
+      }
+      it('has a length of ' + length + ' and a prefix of 5018', function() {
+        detectNetwork('5018' + additionalDigits).should.equal('Maestro')
+      });
+      it('has a length of ' + length + ' and a prefix of 5020', function() {
+        detectNetwork('5020' + additionalDigits).should.equal('Maestro')
+      });
+      it('has a length of ' + length + ' and a prefix of 5038', function() {
+        detectNetwork('5038' + additionalDigits).should.equal('Maestro')
+      });
+      it('has a length of ' + length + ' and a prefix of 6304', function() {
+        detectNetwork('6304' + additionalDigits).should.equal('Maestro')
+      });
+    })(length)
+  }
 });
-

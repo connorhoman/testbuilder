@@ -10,12 +10,13 @@
 var detectNetwork = function(cardNumber) {
 	var length = cardNumber.length;
 	var first = cardNumber.split('')[0];
+	var second = cardNumber.split('')[1];
 
-	if (length === 14) {
+	if (length === 14 && first === '3') {
 		return "Diner's Club";
 	}
 
-	if (length === 15) {
+	if (length === 15 && first === '3') {
 		return 'American Express';
 	}
 
@@ -23,10 +24,14 @@ var detectNetwork = function(cardNumber) {
 		return 'Visa';
 	}
 
-	if (first === '5') {
+	if (first === '5' && second !== '0') {
 		return 'MasterCard';
 	}
 
+	
+	if ((first === '6' && second === '3') || (first === '5' && second === '0')) {
+		return 'Maestro';
+	}
 	if (first === '6' && (length === 16 || length === 19)) {
 		return 'Discover';
 	}
