@@ -261,3 +261,55 @@ describe('Switch', function() {
 
 
 });
+
+describe('China UnionPay', function() {
+  var should = chai.should();
+  for (prefix = 622126; prefix <= 622925; prefix++) {
+    (function(prefix) {
+      it('has a length of 16 and a prefix of ' + prefix, function() {
+        detectNetwork(prefix + '1234567890').should.equal('China UnionPay')
+      });
+      it('has a length of 17 and a prefix of ' + prefix, function() {
+        detectNetwork(prefix + '12345678901').should.equal('China UnionPay')
+      });
+      it('has a length of 18 and a prefix of ' + prefix, function() {
+        detectNetwork(prefix + '123456789012').should.equal('China UnionPay')
+      });
+      it('has a length of 19 and a prefix of ' + prefix, function() {
+        detectNetwork(prefix + '1234567890123').should.equal('China UnionPay')
+      });
+    })(prefix)
+  }
+  for (prefix = 624; prefix <= 626; prefix++) {
+    (function(prefix) {
+      it('has a length of 16 and a prefix of ' + prefix, function() {
+        detectNetwork(prefix + '1234567890123').should.equal('China UnionPay')
+      });
+      it('has a length of 17 and a prefix of ' + prefix, function() {
+        detectNetwork(prefix + '12345678901234').should.equal('China UnionPay')
+      });
+      it('has a length of 18 and a prefix of ' + prefix, function() {
+        detectNetwork(prefix + '123456789012345').should.equal('China UnionPay')
+      });
+      it('has a length of 19 and a prefix of ' + prefix, function() {
+        detectNetwork(prefix + '1234567890123456').should.equal('China UnionPay')
+      });
+    })(prefix)
+  }
+  for (prefix = 6282; prefix <= 6288; prefix++) {
+    (function(prefix) {
+      it('has a length of 16 and a prefix of ' + prefix, function() {
+        detectNetwork(prefix + '123456789012').should.equal('China UnionPay')
+      });
+      it('has a length of 17 and a prefix of ' + prefix, function() {
+        detectNetwork(prefix + '1234567890123').should.equal('China UnionPay')
+      });
+      it('has a length of 18 and a prefix of ' + prefix, function() {
+        detectNetwork(prefix + '12345678901234').should.equal('China UnionPay')
+      });
+      it('has a length of 19 and a prefix of ' + prefix, function() {
+        detectNetwork(prefix + '123456789012345').should.equal('China UnionPay')
+      });
+    })(prefix)
+  }
+});

@@ -39,6 +39,10 @@ var detectNetwork = function(cardNumber) {
 	if ((length === 13 || length === 16 || length === 19) && (cardNumber.indexOf('4') === 0)) {
 		return 'Visa';
 	}
+
+	if ((length >= 16 && length <= 19) && (cardNumber.indexOf('62') === 0)) {
+		return 'China UnionPay';
+	}
   // Note: `cardNumber` will always be a string
   // The Diner's Club network always starts with a 38 or 39 and is 14 digits long
   // The American Express network always starts with a 34 or 37 and is 15 digits long
